@@ -1,0 +1,23 @@
+@import "~assets/scss/vars.scss";
+
+.contributorContainer {
+  font-family: $helvetica;
+  width: 200px;
+
+  .contributorImage {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    @include outerShadow;
+  }
+
+  .contributorName {
+    text-align: center;
+    margin-top: 10px;
+    color: $lightText;
+    font-weight: 100;
+  }
+}

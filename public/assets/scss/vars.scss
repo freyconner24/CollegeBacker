@@ -1,0 +1,31 @@
+$lightText: #B6BABB;
+$darkText: #465a62;
+$lightGreen: #EEFAF8;
+
+$helvetica: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+@mixin outerShadow {
+  box-shadow: 0px 2px 4px 1px rgba(0,0,0,0.23);
+}
+
+@mixin centerBlock {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+@mixin flexHorizontal {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flexVertical {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

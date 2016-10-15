@@ -7,15 +7,11 @@ var config = require('./webpack.config.js');
 
 var bodyParser = require('body-parser'); // for reading POSTed form data into `req.body`
 var session = require('express-session');
-// var cookieParser = require('cookie-parser'); // the session is stored in a cookie, so we use this to parse it
 
 var isDeveloping = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 4000;
 var app = express();
 
-// app.use(cookieParser());
-// app.use(expressSession({secret:'somesecrettokenhere'}));
-// app.use(bodyParser());
 app.use(session({
   resave: false, // don't save session if unmodified
   saveUninitialized: false, // don't create session until something stored
@@ -23,36 +19,6 @@ app.use(session({
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-app.post('/login', function(req, res) {
-  var user = {
-    email: req.body.email,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    id: req.body.id,
-
-  };
-
-  req.session.regenerate(function() {
-    req.session.user = user;
-    req.session.save();
-    res.json(req.session.user);
-  });
-});
-
-app.post('/logout', function(req, res) {
-  req.session.destroy(function() {
-    res.json({success: "good logout"});
-  });
-});
-
-app.post('/session', function(req, res) {
-  if(req.session.user) {
-    res.json(req.session.user);
-  } else {
-    res.json(null);
-  }
-});
 
 if (isDeveloping) {
   console.log("DEV MODE ACTIVATED");
@@ -72,7 +38,6 @@ if (isDeveloping) {
   });
 
   var publicPath = path.resolve(__dirname, 'public');
-  // We point to our static assets
   app.use(express.static(publicPath));
 
   app.use(middleware);
